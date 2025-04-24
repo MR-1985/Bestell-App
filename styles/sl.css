@@ -1,0 +1,93 @@
+#sl {
+    width: 100%;
+    border-right: 1px solid;
+    border-color: rgb(239, 238, 238);
+    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.2) !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.pictures {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70px;
+}
+
+.picture-aot {
+    background-image: url("./../assets/imgs/schnitzel-8575036_1280.png");
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.company-logo {
+
+    width: 80px;
+    rotate: -20deg;
+    transform: translateY(20px);
+}
+
+.company {
+    padding-left: 20px;
+    background-color: rgba(242, 175, 93, 0.5)
+}
+
+.picture-main-menue {
+    background-image: url("./../assets/imgs/pizza-3010062_1280.jpg");
+}
+
+#sl-menuebar {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(224, 222, 222);
+    font-size: 20px;
+}
+
+.picture-side-dish {
+    background-image: url("./../assets/imgs/ai-generated-8700413_1280.jpg");
+}
+
+.picture-salad {
+    background-image: url("./../assets/imgs/salad-5062308_1280.jpg");
+}
+
+.sl-main-menue-container {
+    display: flex;
+    background-color: rgba(242, 175, 93, 0.315);
+    justify-content: space-between;
+    border: 1px solid;
+    border-color: rgb(239, 238, 238);
+    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.2) !important;
+    flex-direction: column;
+}
+
+.sl-side-dish-container {
+    display: flex;
+    background-color: rgba(242, 175, 93, 0.315);
+    justify-content: space-between;
+    border: 1px solid;
+    border-color: rgb(239, 238, 238);
+    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.2) !important;
+    flex-direction: column;
+}
+
+
+.sl-menue-name {
+    display: flex;
+    justify-content: space-between;
+    font-style: italic;
+}
+
+.sl-menues {
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.sl-description-price {
+    font-size: 17px;
+    margin-right: 10px;
+}

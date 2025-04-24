@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lieferinsky</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/buttons.css">
+    <link rel="stylesheet" href="./styles/headlines.css">
+    <link rel="stylesheet" href="./styles/standards.css">
+    <link rel="stylesheet" href="./styles/sl.css">
+    <link rel="stylesheet" href="./styles/sr.css">
+    <link rel="stylesheet" href="./styles/scrollbar.css">
+    <link rel="shortcut icon" href="./assets/icons/favicon-32x32.png" type="image/x-icon">
+    <script src="./templates/template.js"></script>
+    <script src="./scripts/db.js"></script>
+    
+</head>
+
+<body id="body" onload="renderMenues()">
+    <header>
+        <h1 class="pl20">
+            Lieferinsky <br><span class="header-text fs16">Ihr Essen ist kalt,bevor Sie Hunger haben.</span>
+        </h1>
+        
+    </header>
+
+    <div id="overlay" onclick="closeOverlay()">
+    </div>
+
+    <div id="second-body">
+
+        <div id="sl">
+            
+            <div class="picture-aot pictures">
+                <img class="company-logo" src="./assets/imgs/bread-1294941_640.png" alt="Firmenlogo, ein Brot">
+            </div>
+            <div class="company p10">
+                <h2>Nordfrost</h2>
+                <h5><a href="http://trustpilot.de">Bewertung<br>(4,3 von 5 Sternen)</a></h5>
+            </div>
+            <div id="sl-menuebar" class="pl5 pr5"><img class="arrow" src="./assets/icons/arrow-wo-bg.png" alt="ein Pfeil">
+                <a href="#main-menue"><span>Hauptgerichte</span></a>
+                <a href="#side-dish"><span>Beilagen</span></a>
+                <a href="#salad"><span>Salate</span></a>
+            </div>
+            <div class="sl-menue p">
+
+                <div class="picture-main-menue pictures pl10">
+                    <h3 id="main-menue">Hauptgerichte</h3>
+                </div>
+                <div id="main-menues" class="sl-main-menue-container m10">
+                </div>
+
+                <div class="picture-side-dish pictures pl10">
+                    <h3 id="side-dish">Beilagen</h3>
+                </div>
+                <div id="side-dishes" class="sl-main-menue-container m10">
+                </div>
+
+                <div class="picture-salad pictures pl10">
+
+                    <h3 id="salad">Salate</h3>
+                </div>
+                <div id="salads" class="sl-main-menue-container m10">
+                </div>
+
+            </div>
+        </div>
+
+        <div id="sr">
+            <div class="sticky bb">
+                <div class="sr-header bb">
+                    <h2 class="headline-cart">Warenkorb</h2>
+                </div>
+                <div id="sr-calculating-main-container" class=" mb10 ml30 mr30 bb">
+
+                </div>
+                <div class="bill-container">
+                    <div class="actuel-summ-container">
+                        <div class=" jc-sp-betw">
+                            <span>
+                                Teilsumme
+                            </span>
+                            <span id="actual-summ" class=""></span>
+                        </div>
+                        <!-- <div>
+
+                        </div> -->
+                    </div>
+                    <div class="delivery-cost-container">
+                        <div class=" jc-sp-betw">
+                            <span>
+                                Lieferung
+                            </span>
+                            <span id="delivery-cost" class=""></span>
+                        </div>
+                        <!-- <div>
+
+                        </div> -->
+                    </div>
+                    <div class="end-summ-container">
+                        <div class=" jc-sp-betw">
+                            <span>
+                                Gesamt
+                            </span>
+                            <span id="end-summ" class=""></span>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+                <div onclick="clearBasket()" class="buy-now mb10 mt10">
+                    <div>
+                        Bestellen
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div onclick="showBasket()" class="basket-button">
+        <div>
+            Warenkorb
+        </div>
+    </div>
+    <script src="./script.js"></script>
+    <script src="./scripts/forTemp.js"></script>
+<footer>
+    
+</footer>
+</body>
+
+</html>
