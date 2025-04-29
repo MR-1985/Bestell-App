@@ -12,9 +12,25 @@ function renderMenues() {
     mainMenuesRef.innerHTML = "";
     sideDishesRef.innerHTML = "";
     saladsRef.innerHTML = "";
-    forRenderMenuesTemp(mainMenuesRef, sideDishesRef, saladsRef);
+    createMenuItems(mainMenuesRef, sideDishesRef, saladsRef);
     loadBasket();
     calcAll();
+};
+
+function createMenuItems(mainMenuesRef, sideDishesRef, saladsRef){
+    for (let i = 0; i < fullMenu.length; i++) {
+        let names = fullMenu[i].name;
+        let description = fullMenu[i].description;
+        let price = fullMenu[i].price.toFixed(2);
+        let category = fullMenu[i].category;
+        if (category === "mainMenu") {
+            mainMenuesRef.innerHTML += showMenueTemp(names, description, price, i, "mainMenu");
+        } else if (category === "sideDish") {
+            sideDishesRef.innerHTML += showMenueTemp(names, description, price, i, "sideDish");
+        } else {
+            saladsRef.innerHTML += showMenueTemp(names, description, price, i, "salads");
+        }
+    }
 };
 
 function actualBasket() {
@@ -34,27 +50,80 @@ function addChoice(i) {
     let basketItem = myBasket.find(item => item.name === selectedMenu.name);
     localStorage.setItem('basket-items', JSON.stringify(myBasket));
     choiceContainerRef.innerHTML = "";
-    ifAddChoiceTemp(selectedMenu, basketItem);
-    forAddChoiceTemp(choiceContainerRef);
+    changeCountAmount(selectedMenu, basketItem);
+    createChoices(choiceContainerRef);
     calcBasketSumm();
     calcDeliveryCost();
     calcTotal();
 };
 
+function changeCountAmount(selectedMenu, basketItem){
+    if (basketItem) {
+        basketItem.count += 1;
+        basketItem.amount += 1;
+    } else {
+        selectedMenu.count = 1;
+        selectedMenu.amount = 1;
+        myBasket.push(selectedMenu);
+    }
+};
+
+function createChoices(choiceContainerRef){
+    for (let i = 0; i < myBasket.length; i++) {
+        const basketMenu = myBasket[i];
+        if (basketMenu) {
+            choiceContainerRef.innerHTML += showChoiceTemp(basketMenu, i);
+        }
+    }
+    for (let i = 0; i < myBasket.length; i++) {
+        const countRef = document.getElementById(`count-${i}`);
+        const count = myBasket[i].count;
+        if (countRef) {
+            countRef.innerHTML = addCountTemp(count);
+        }
+    }
+};
+
 function basketAdd(i) {
     let choiceContainerRef = document.getElementById("sr-calculating-main-container");
-    ifBasketAddTemp(i)
+    innerBasketCountUpAmountUp(i)
     localStorage.setItem('basket-items', JSON.stringify(myBasket));
     choiceContainerRef.innerHTML = "";
     calcAll();
 };
 
+function innerBasketCountUpAmountUp(i){
+    let selectedMenu = myBasket[i];
+    let basketIndex = myBasket.findIndex(item => item.name === selectedMenu.name);
+    if (basketIndex > -1) {
+        let basketInput = myBasket[basketIndex]
+        if (basketInput.count > 0) {
+            basketInput.count += 1;
+            basketInput.amount += 1;
+        }
+    }
+};
+
 function basketRemove(i) {
     let choiceContainerRef = document.getElementById("sr-calculating-main-container");
-    ifBasketRemoveTemp(i)
+    innerBasketCountDownAmountDown(i)
     localStorage.setItem('basket-items', JSON.stringify(myBasket));
     choiceContainerRef.innerHTML = "";
     calcAll();
+};
+
+function innerBasketCountDownAmountDown(i){
+    let selectedMenu = myBasket[i];
+    let basketIndex = myBasket.findIndex(item => item.name === selectedMenu.name);
+    if (basketIndex > -1) {
+        let basketInput = myBasket[basketIndex]
+        if (basketInput.count > 1) {
+            basketInput.count -= 1;
+            basketInput.amount -= 1;
+        } else {
+            myBasket.splice(basketIndex, 1);
+        }
+    }
 };
 
 function deleteItem(i) {
@@ -63,10 +132,19 @@ function deleteItem(i) {
     let basketIndex = myBasket.findIndex(item => item.name === selectedMenu.name);
     let actualBasketSummRef = document.getElementById("actual-summ");
     let endSummRef = document.getElementById("end-summ");
-    ifDeleteItemTemp(basketIndex, actualBasketSummRef, endSummRef);
+    innerBasketDeletItem(basketIndex, actualBasketSummRef, endSummRef);
     localStorage.setItem('basket-items', JSON.stringify(myBasket));
     choiceContainerRef.innerHTML = "";
     calcAll();
+};
+
+function innerBasketDeletItem(basketIndex, actualBasketSummRef, endSummRef){
+    if (basketIndex > -1) {
+        myBasket.splice(basketIndex, 1);
+    }
+    if (myBasket.length === 0) {
+        endSummRef.innerHTML = actualBasketSummRef.textContent;
+    }
 };
 
 function calcBasketSumm() {
