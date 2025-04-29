@@ -33,14 +33,14 @@ function createMenuItems(mainMenuesRef, sideDishesRef, saladsRef){
     }
 };
 
-function actualBasket() {
+function updateBasket() {
     for (let i = 0; i < myBasket.length; i++) {
         let choiceContainerRef = document.getElementById("sr-calculating-main-container");
-        let basketMenuActuell = myBasket[i];
-        choiceContainerRef.innerHTML += showChoiceTemp(basketMenuActuell, i);
+        let currentBasketMenu = myBasket[i];
+        choiceContainerRef.innerHTML += showChoiceTemp(currentBasketMenu, i);
         const count = myBasket[i].count;
         const countRef = document.getElementById(`count-${i}`);
-        countRef.innerHTML = removeCountTemp(count);
+        countRef.innerHTML = returnCountTemp(count);
     }
 };
 
@@ -79,7 +79,7 @@ function createChoices(choiceContainerRef){
         const countRef = document.getElementById(`count-${i}`);
         const count = myBasket[i].count;
         if (countRef) {
-            countRef.innerHTML = addCountTemp(count);
+            countRef.innerHTML = returnCountTemp(count);
         }
     }
 };
@@ -179,7 +179,7 @@ function calcTotal() {
 };
 
 function calcAll() {
-    actualBasket();
+    updateBasket();
     calcBasketSumm();
     calcDeliveryCost();
     calcTotal();
