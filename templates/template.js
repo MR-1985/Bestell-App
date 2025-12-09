@@ -23,7 +23,6 @@ function showChoiceTemp(basketMenu, i) {
 <div id = "placeholder" class = "d-none">
     Der warenkorb ist noch leer. <br> Wähle deine Menüs.
 </div>
-
 <div id = "sr-calculating${i}" class=" mt10">
     <div id="menue-name" >
         ${basketMenu.name} 
